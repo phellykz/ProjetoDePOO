@@ -14,11 +14,14 @@ import java.io.OutputStream;
  */
 public class DaoPessoa implements IDaoPessoa {
 
-    protected DaoPessoa() {}
+    private static final String FOLDER = "pessoas/";
+
+    protected DaoPessoa() {
+    }
 
     @Override
     public void reservar(Pessoa pessoa) throws ExcecaoNegocio {
-        
+
         try {
             File file = getFile(pessoa.getCpf());
             OutputStream out = new FileOutputStream(file);
@@ -27,11 +30,11 @@ public class DaoPessoa implements IDaoPessoa {
 
             oout.flush();
             oout.close();
-            
+
         } catch (Exception ex) {
             throw new ExcecaoNegocio(ex.getMessage(), ex);
         }
-        
+
     }
 
     @Override
@@ -42,12 +45,20 @@ public class DaoPessoa implements IDaoPessoa {
     @Override
     public void remover(String cpf) throws ExcecaoEntidadeNaoExistente {
         File arquivo = getFile(cpf);
-        
-        if(arquivo.exists()){
+
+        if (arquivo.exists()) {
             arquivo.delete();
-        }else{
+        } else {
             throw new ExcecaoEntidadeNaoExistente();
         }
+    }
+
+    private File getFile(String email) {
+
+        File directory = new File(FOLDER);
+        directory.mkdirs();
+
+        return new File(directory, email);
     }
 
     @Override
@@ -63,10 +74,6 @@ public class DaoPessoa implements IDaoPessoa {
     @Override
     public Pessoa[] listar() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    private File getFile(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
