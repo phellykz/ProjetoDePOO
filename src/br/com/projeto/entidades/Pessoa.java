@@ -3,7 +3,7 @@ package br.com.projeto.entidades;
 /**
  *
  * @author Jefferson Coelho and Luiz Felix
- * eu!!!
+ *
  */
 public class Pessoa {
 
@@ -14,6 +14,9 @@ public class Pessoa {
     private int quantidadeMala;
     private String cpf;
 
+    public Pessoa() {
+    }
+
     public Pessoa(String nome, int idade, Voo voo, boolean mala, int quantidadeMala, String cpf) {
         this.nome = nome;
         this.idade = idade;
@@ -22,8 +25,6 @@ public class Pessoa {
         this.quantidadeMala = quantidadeMala;
         this.cpf = cpf;
     }
-    
-    
 
     public String getCpf() {
         return cpf;
@@ -32,7 +33,7 @@ public class Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
+
     public boolean isMala() {
         return mala;
     }

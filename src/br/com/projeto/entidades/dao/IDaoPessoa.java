@@ -1,6 +1,7 @@
 package br.com.projeto.entidades.dao;
 
 import br.com.projeto.entidades.*;
+import br.com.projeto.excecoes.ExcecaoEntidadeNaoExistente;
 import br.com.projeto.excecoes.ExcecaoNegocio;
 
 /**
@@ -10,15 +11,14 @@ import br.com.projeto.excecoes.ExcecaoNegocio;
 public interface IDaoPessoa {
 
     void reservar(Pessoa pessoa)throws ExcecaoNegocio;
-    // throws ExcecaoNegocio ;
 
     void atualizar(Pessoa pessoa);
 
-    void remover(String email);
+    void remover(String cpf)throws ExcecaoEntidadeNaoExistente;
 
-    Pessoa consultar(String email);
+    Pessoa consultar(Pessoa pessoa);
 
-    boolean exists(String email);
+    boolean exists(String cpf);
 
     Pessoa[] listar();
 

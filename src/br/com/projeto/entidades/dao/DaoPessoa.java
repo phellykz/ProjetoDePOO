@@ -1,6 +1,7 @@
 package br.com.projeto.entidades.dao;
 
 import br.com.projeto.entidades.Pessoa;
+import br.com.projeto.excecoes.ExcecaoEntidadeNaoExistente;
 import br.com.projeto.excecoes.ExcecaoNegocio;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,17 +40,23 @@ public class DaoPessoa implements IDaoPessoa {
     }
 
     @Override
-    public void remover(String email) {
+    public void remover(String cpf) throws ExcecaoEntidadeNaoExistente {
+        File arquivo = getFile(cpf);
+        
+        if(arquivo.exists()){
+            arquivo.delete();
+        }else{
+            throw new ExcecaoEntidadeNaoExistente();
+        }
+    }
+
+    @Override
+    public Pessoa consultar(Pessoa pessoa) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Pessoa consultar(String email) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean exists(String email) {
+    public boolean exists(String cpf) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
