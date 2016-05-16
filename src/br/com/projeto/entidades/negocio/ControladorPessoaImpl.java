@@ -3,8 +3,12 @@ package br.com.projeto.entidades.negocio;
 import br.com.projeto.entidades.Pessoa;
 import br.com.projeto.entidades.dao.FabricaDao;
 import br.com.projeto.entidades.dao.IDaoPessoa;
+import br.com.projeto.excecoes.ExcecaoEntidadeNaoExistente;
 import br.com.projeto.excecoes.ExcecaoNegocio;
 import br.com.projeto.excecoes.ExcecaoRegistroExistente;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,19 +35,24 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
         }
         dao.reservar(pessoa);
     }
-/*
+
     @Override
-    public void atualizar(T pessoa)throws ExcecaoRegistroExistente {
-        
-        if(dao.exists(pessoa.getEmail())){
+    public void remover(T pessoa) throws ExcecaoEntidadeNaoExistente {
+
+    }
+
+    @Override
+    public void atualizar(T pessoa) throws ExcecaoRegistroExistente {
+        IDaoPessoa dao = FabricaDao.getInstancia();
+
+        if (dao.exists(pessoa.getCpf())) {
             throw new ExcecaoRegistroExistente();
         }
-        dao.atualizar(pessoa);
-    }
-*/
-    @Override
-    public void remover(T pessoa) {
-        
+        try {
+            dao.atualizar(pessoa);
+        } catch (ExcecaoEntidadeNaoExistente ex) {
+            Logger.getLogger(ControladorPessoaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

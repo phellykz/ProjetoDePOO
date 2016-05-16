@@ -1,6 +1,7 @@
 package br.com.projeto.entidades.negocio;
 
 import br.com.projeto.entidades.Pessoa;
+import br.com.projeto.excecoes.ExcecaoEntidadeNaoExistente;
 import br.com.projeto.excecoes.ExcecaoNegocio;
 import br.com.projeto.excecoes.ExcecaoRegistroExistente;
 
@@ -14,6 +15,6 @@ public interface IControladorPessoa <T> {
 
     void atualizar(T pessoa) throws ExcecaoRegistroExistente;
 
-    void remover(T pessoa);
+    void remover(T pessoa) throws ExcecaoEntidadeNaoExistente ;
 
 }

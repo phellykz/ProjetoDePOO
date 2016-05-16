@@ -17,13 +17,12 @@ import java.util.logging.Logger;
  * @author phell
  */
 public class DaoPessoa<T extends Pessoa> implements IDaoPessoa<T> {
-    
-    
-	private Class<T> type;
-	
-	public DaoPessoa(Class<T> type) {
-		this.type = type;
-	}
+
+    private Class<T> type;
+
+    public DaoPessoa(Class<T> type) {
+        this.type = type;
+    }
 
     private static final String FOLDER = "pessoas/";
     private String email;
@@ -50,14 +49,9 @@ public class DaoPessoa<T extends Pessoa> implements IDaoPessoa<T> {
     }
 
     @Override
-    public void atualizar(String cpf) throws ExcecaoEntidadeNaoExistente {
-        File arquivo = getFile(cpf);
-
-        if (arquivo.exists()) {
-          
-        } else {
-            throw new ExcecaoEntidadeNaoExistente();
-        }
+    public void atualizar(T pessoa) throws ExcecaoEntidadeNaoExistente {
+       //Falta a implementação.
+        //Tendo que aqui só ira manipular o arquivo.
     }
 
     @Override
