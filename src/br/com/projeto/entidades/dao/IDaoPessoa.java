@@ -8,18 +8,16 @@ import br.com.projeto.excecoes.ExcecaoNegocio;
  *
  * @author Jefferson Coelho and Luiz Felix
  */
-public interface IDaoPessoa {
+public interface IDaoPessoa<T> {
 
-    void reservar(Pessoa pessoa)throws ExcecaoNegocio;
+    void reservar(T pessoa) throws ExcecaoNegocio;
 
-    void atualizar(Pessoa pessoa);
+    void atualizar(String cpf) throws ExcecaoEntidadeNaoExistente;
 
-    void remover(String cpf)throws ExcecaoEntidadeNaoExistente;
+    void remover(String cpf) throws ExcecaoEntidadeNaoExistente;
 
-    Pessoa consultar(Pessoa pessoa);
+    T consultar(T pessoa);
 
     boolean exists(String cpf);
-
-    Pessoa[] listar();
 
 }
