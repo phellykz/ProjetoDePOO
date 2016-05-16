@@ -10,14 +10,20 @@ import br.com.projeto.excecoes.ExcecaoRegistroExistente;
  *
  * @author phell
  */
-public class ControladorPessoaImpl implements IControladorPessoa {
+public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPessoa<T> {
+
+    private Class<T> type;
+
+    public ControladorPessoaImpl(Class<T> type) {
+        this.type = type;
+    }
 
     protected ControladorPessoaImpl() {
 
     }
 
     @Override
-    public void inserir(Pessoa pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio {
+    public void inserir(T pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio {
         IDaoPessoa dao = FabricaDao.getInstancia();
 
         if (dao.exists(pessoa.getCpf())) {
@@ -27,19 +33,17 @@ public class ControladorPessoaImpl implements IControladorPessoa {
     }
 
     @Override
-    public void atualizar(Pessoa pessoa) {
-
+    public void atualizar(T pessoa)throws ExcecaoRegistroExistente {
+        
+        if(dao.exists(pessoa.getEmail())){
+            throw new ExcecaoRegistroExistente();
+        }
+        dao.atualizar(pessoa);
     }
 
     @Override
-    public void remover(Pessoa pessoa) {
-
-    }
-
-    @Override
-    public Pessoa[] listar() {
-
-        return null;
+    public void remover(T pessoa) {
+        
     }
 
 }

@@ -8,13 +8,12 @@ import br.com.projeto.excecoes.ExcecaoRegistroExistente;
  *
  * @author Jefferson Coelho and Luiz Felix
  */
-public interface IControladorPessoa {
+public interface IControladorPessoa <T> {
 
-    void inserir(Pessoa pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio;
+    void inserir(T pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio;
 
-    void atualizar(Pessoa pessoa);
+    void atualizar(T pessoa) throws ExcecaoRegistroExistente;
 
-    void remover(Pessoa pessoa);
+    void remover(T pessoa);
 
-    Pessoa[] listar();
 }

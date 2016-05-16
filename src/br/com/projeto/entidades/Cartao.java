@@ -11,17 +11,26 @@ public class Cartao {
     private int codSeguranca;
     private String validade;
     private String tipoCartao;
-    private Pagante pessoaPagante;
+    private String pessoaPagante;
 
     public Cartao() {
     }
 
-    public Cartao(int numero, String nomeCartao, int codSeguranca, String validade, String tipoCartao) {
+    public Cartao(int numero, String nomeCartao, int codSeguranca, String validade, String tipoCartao, String pessoaPagante) {
         this.numero = numero;
         this.nomeCartao = nomeCartao;
         this.codSeguranca = codSeguranca;
         this.validade = validade;
         this.tipoCartao = tipoCartao;
+        this.pessoaPagante = pessoaPagante;
+    }
+
+    public String getPessoaPagante() {
+        return pessoaPagante;
+    }
+
+    public void setPessoaPagante(String pessoaPagante) {
+        this.pessoaPagante = pessoaPagante;
     }
 
     public int getNumero() {
