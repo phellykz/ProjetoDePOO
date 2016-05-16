@@ -3,8 +3,6 @@ package br.com.projeto.entidades;
 /**
  *
  * @author phell
- * testando porra!!!
- * 
  */
 public class Adulto extends Pessoa {
 
