@@ -7,6 +7,9 @@ import br.com.projeto.entidades.dao.IDaoPessoa;
 import br.com.projeto.excecoes.ExcecaoEntidadeNaoExistente;
 import br.com.projeto.excecoes.ExcecaoNegocio;
 import br.com.projeto.excecoes.ExcecaoRegistroExistente;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,6 +39,7 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
     }
 
     @Override
+<<<<<<< HEAD
     public void atualizar(T pessoa)throws ExcecaoEntidadeNaoExistente {
         IDaoPessoa dao = FabricaDao.getInstancia();
         
@@ -45,11 +49,24 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
             throw new ExcecaoEntidadeNaoExistente();    
         }
         
+=======
+    public void remover(T pessoa) throws ExcecaoEntidadeNaoExistente {
+
+>>>>>>> origin/master
     }
 
     @Override
-    public void remover(T pessoa) {
-        
+    public void atualizar(T pessoa) throws ExcecaoRegistroExistente {
+        IDaoPessoa dao = FabricaDao.getInstancia();
+
+        if (dao.exists(pessoa.getCpf())) {
+            throw new ExcecaoRegistroExistente();
+        }
+        try {
+            dao.atualizar(pessoa);
+        } catch (ExcecaoEntidadeNaoExistente ex) {
+            Logger.getLogger(ControladorPessoaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

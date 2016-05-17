@@ -12,7 +12,7 @@ public interface IDaoPessoa<T> {
 
     void reservar(T pessoa) throws ExcecaoNegocio;
 
-    void atualizar(String cpf) throws ExcecaoEntidadeNaoExistente;
+    void atualizar(T pessoa) throws ExcecaoEntidadeNaoExistente;
 
     void remover(String cpf) throws ExcecaoEntidadeNaoExistente;
 
