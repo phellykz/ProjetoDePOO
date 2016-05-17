@@ -1,14 +1,17 @@
 package br.com.projeto.entidades.negocio;
 
 import br.com.projeto.entidades.Pessoa;
+import br.com.projeto.entidades.dao.DaoPessoa;
 import br.com.projeto.entidades.dao.FabricaDao;
 import br.com.projeto.entidades.dao.IDaoPessoa;
+import br.com.projeto.excecoes.ExcecaoEntidadeNaoExistente;
 import br.com.projeto.excecoes.ExcecaoNegocio;
 import br.com.projeto.excecoes.ExcecaoRegistroExistente;
 
 /**
  *
  * @author phell
+ * @param <T>
  */
 public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPessoa<T> {
 
@@ -33,12 +36,15 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
     }
 
     @Override
-    public void atualizar(T pessoa)throws ExcecaoRegistroExistente {
+    public void atualizar(T pessoa)throws ExcecaoEntidadeNaoExistente {
+        IDaoPessoa dao = FabricaDao.getInstancia();
         
-        if(dao.exists(pessoa.getEmail())){
-            throw new ExcecaoRegistroExistente();
+        if(dao.exists(pessoa.getCpf())){
+            dao.atualizar(pessoa.getCpf());
+        } else {
+            throw new ExcecaoEntidadeNaoExistente();    
         }
-        dao.atualizar(pessoa);
+        
     }
 
     @Override
