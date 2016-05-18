@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  *
  * @author phell
  * @param <T>
+ * 
  */
 public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPessoa<T> {
 
@@ -39,7 +40,7 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
     }
 
     @Override
-<<<<<<< HEAD
+
     public void atualizar(T pessoa)throws ExcecaoEntidadeNaoExistente {
         IDaoPessoa dao = FabricaDao.getInstancia();
         
@@ -48,25 +49,18 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
         } else {
             throw new ExcecaoEntidadeNaoExistente();    
         }
-        
-=======
-    public void remover(T pessoa) throws ExcecaoEntidadeNaoExistente {
-
->>>>>>> origin/master
-    }
+    }        
 
     @Override
-    public void atualizar(T pessoa) throws ExcecaoRegistroExistente {
-        IDaoPessoa dao = FabricaDao.getInstancia();
-
-        if (dao.exists(pessoa.getCpf())) {
-            throw new ExcecaoRegistroExistente();
+    public void remover(T pessoa) throws ExcecaoEntidadeNaoExistente {
+         IDaoPessoa dao = FabricaDao.getInstancia();
+        
+        if(dao.exists(pessoa.getCpf())){
+            dao.remover(pessoa.getCpf());
+        } else {
+            throw new ExcecaoEntidadeNaoExistente();    
         }
-        try {
-            dao.atualizar(pessoa);
-        } catch (ExcecaoEntidadeNaoExistente ex) {
-            Logger.getLogger(ControladorPessoaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
+    }  
 
 }
