@@ -11,12 +11,10 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
+/*
  * @author phell
- * @param <T>
- * 
  */
+
 public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPessoa<T> {
 
     private Class<T> type;

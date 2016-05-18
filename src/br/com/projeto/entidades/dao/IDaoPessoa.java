@@ -8,6 +8,7 @@ import br.com.projeto.excecoes.ExcecaoNegocio;
  *
  * @author Jefferson Coelho and Luiz Felix
  */
+
 public interface IDaoPessoa<T> {
 
     void reservar(T pessoa) throws ExcecaoNegocio;
