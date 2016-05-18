@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /*
- * @author phell
+ * @author Jefferson Coelho and Luiz Félix
  */
 public class DaoPessoa<T extends Pessoa> implements IDaoPessoa<T> {
 
