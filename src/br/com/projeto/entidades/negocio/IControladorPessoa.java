@@ -13,7 +13,7 @@ import br.com.projeto.excecoes.ExcecaoRegistroExistente;
 
 public interface IControladorPessoa <T> {
 
-    void inserir(T pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio;
+    void reservar(T pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio;
 
     void atualizar(T pessoa) throws ExcecaoEntidadeNaoExistente;
 

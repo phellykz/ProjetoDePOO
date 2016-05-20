@@ -28,7 +28,7 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
     }
 
     @Override
-    public void inserir(T pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio {
+    public void reservar(T pessoa) throws ExcecaoRegistroExistente, ExcecaoNegocio {
         IDaoPessoa dao = FabricaDao.getInstancia();
 
         if (dao.exists(pessoa.getCpf())) {
@@ -43,7 +43,8 @@ public class ControladorPessoaImpl<T extends Pessoa> implements IControladorPess
         IDaoPessoa dao = FabricaDao.getInstancia();
         
         if(dao.exists(pessoa.getCpf())){
-            dao.atualizar(pessoa.getCpf());
+            dao.atualizar(pessoa);
+           
         } else {
             throw new ExcecaoEntidadeNaoExistente();    
         }
